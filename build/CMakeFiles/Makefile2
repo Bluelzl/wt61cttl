@@ -1706,6 +1706,61 @@ clean: imu/CMakeFiles/imu_gennodejs.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory wt61
+
+# Convenience name for "all" pass in the directory.
+wt61/all: wt61/CMakeFiles/wt61_node.dir/all
+
+.PHONY : wt61/all
+
+# Convenience name for "clean" pass in the directory.
+wt61/clean: wt61/CMakeFiles/wt61_node.dir/clean
+
+.PHONY : wt61/clean
+
+# Convenience name for "preinstall" pass in the directory.
+wt61/preinstall:
+
+.PHONY : wt61/preinstall
+
+#=============================================================================
+# Target rules for target wt61/CMakeFiles/wt61_node.dir
+
+# All Build rule for target.
+wt61/CMakeFiles/wt61_node.dir/all:
+	$(MAKE) -f wt61/CMakeFiles/wt61_node.dir/build.make wt61/CMakeFiles/wt61_node.dir/depend
+	$(MAKE) -f wt61/CMakeFiles/wt61_node.dir/build.make wt61/CMakeFiles/wt61_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/s/imu_test1/build/CMakeFiles --progress-num=22,23,24 "Built target wt61_node"
+.PHONY : wt61/CMakeFiles/wt61_node.dir/all
+
+# Include target in all.
+all: wt61/CMakeFiles/wt61_node.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+wt61/CMakeFiles/wt61_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s/imu_test1/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 wt61/CMakeFiles/wt61_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s/imu_test1/build/CMakeFiles 0
+.PHONY : wt61/CMakeFiles/wt61_node.dir/rule
+
+# Convenience name for target.
+wt61_node: wt61/CMakeFiles/wt61_node.dir/rule
+
+.PHONY : wt61_node
+
+# clean rule for target.
+wt61/CMakeFiles/wt61_node.dir/clean:
+	$(MAKE) -f wt61/CMakeFiles/wt61_node.dir/build.make wt61/CMakeFiles/wt61_node.dir/clean
+.PHONY : wt61/CMakeFiles/wt61_node.dir/clean
+
+# clean rule for target.
+clean: wt61/CMakeFiles/wt61_node.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

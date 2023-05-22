@@ -366,6 +366,9 @@ gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 //Value Computed by CMake
 imu_BINARY_DIR:STATIC=/home/s/imu_test1/build/imu
 
+//The directory containing a CMake configuration file for imu.
+imu_DIR:PATH=/home/s/imu_test1/devel/share/imu/cmake
+
 //Dependencies for target
 imu_LIB_DEPENDS:STATIC=
 
@@ -373,7 +376,7 @@ imu_LIB_DEPENDS:STATIC=
 imu_SOURCE_DIR:STATIC=/home/s/imu_test1/src/imu
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/melodic/lib/libserial.so
+lib:FILEPATH=/opt/ros/melodic/lib/libxmlrpcpp.so
 
 //The directory containing a CMake configuration file for message_generation.
 message_generation_DIR:PATH=/opt/ros/melodic/share/message_generation/cmake
@@ -410,6 +413,12 @@ serial_DIR:PATH=/opt/ros/melodic/share/serial/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/melodic/share/std_msgs/cmake
+
+//Value Computed by CMake
+wt61_BINARY_DIR:STATIC=/home/s/imu_test1/build/wt61
+
+//Value Computed by CMake
+wt61_SOURCE_DIR:STATIC=/home/s/imu_test1/src/wt61
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/melodic/share/xmlrpcpp/cmake
@@ -526,7 +535,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

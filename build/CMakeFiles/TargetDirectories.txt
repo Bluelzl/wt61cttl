@@ -80,3 +80,11 @@
 /home/s/imu_test1/build/imu/CMakeFiles/imu_generate_messages_eus.dir
 /home/s/imu_test1/build/imu/CMakeFiles/imu_generate_messages_nodejs.dir
 /home/s/imu_test1/build/imu/CMakeFiles/imu_gennodejs.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/install/strip.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/list_install_components.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/install/local.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/test.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/wt61_node.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/install.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/edit_cache.dir
+/home/s/imu_test1/build/wt61/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,8 @@
+prefix=/home/s/imu_test1/install
+
+Name: wt61
+Description: Description of wt61
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

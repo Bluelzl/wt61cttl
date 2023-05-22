@@ -18,10 +18,17 @@ set(CMAKE_MAKEFILE_DEPENDS
   "imu/catkin_generated/ordered_paths.cmake"
   "imu/catkin_generated/package.cmake"
   "imu/cmake/imu-genmsg.cmake"
+  "wt61/catkin_generated/ordered_paths.cmake"
+  "wt61/catkin_generated/package.cmake"
+  "/home/s/imu_test1/devel/share/imu/cmake/imu-msg-extras.cmake"
   "/home/s/imu_test1/devel/share/imu/cmake/imu-msg-paths.cmake"
+  "/home/s/imu_test1/devel/share/imu/cmake/imuConfig-version.cmake"
+  "/home/s/imu_test1/devel/share/imu/cmake/imuConfig.cmake"
   "/home/s/imu_test1/src/CMakeLists.txt"
   "/home/s/imu_test1/src/imu/CMakeLists.txt"
   "/home/s/imu_test1/src/imu/package.xml"
+  "/home/s/imu_test1/src/wt61/CMakeLists.txt"
+  "/home/s/imu_test1/src/wt61/package.xml"
   "/opt/ros/melodic/share/catkin/cmake/../package.xml"
   "/opt/ros/melodic/share/catkin/cmake/all.cmake"
   "/opt/ros/melodic/share/catkin/cmake/assert.cmake"
@@ -215,6 +222,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
   "gtest/googlemock/gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "imu/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "wt61/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -266,4 +274,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "imu/CMakeFiles/imu_generate_messages_eus.dir/DependInfo.cmake"
   "imu/CMakeFiles/imu_generate_messages_nodejs.dir/DependInfo.cmake"
   "imu/CMakeFiles/imu_gennodejs.dir/DependInfo.cmake"
+  "wt61/CMakeFiles/wt61_node.dir/DependInfo.cmake"
   )

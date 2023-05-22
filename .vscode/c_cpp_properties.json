@@ -11,7 +11,8 @@
                 "/home/s/imu_test1/src/imu/include/**",
                 "/home/s/catkin_ws/src/vision/include/**",
                 "/usr/include/**",
-                "${workspaceFolder}/devel/include"
+                "${workspaceFolder}/devel/include",
+                "${workspaceFolder}/src/wt61/include"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

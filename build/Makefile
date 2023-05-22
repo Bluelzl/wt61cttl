@@ -778,6 +778,19 @@ imu_gennodejs/fast:
 	$(MAKE) -f imu/CMakeFiles/imu_gennodejs.dir/build.make imu/CMakeFiles/imu_gennodejs.dir/build
 .PHONY : imu_gennodejs/fast
 
+#=============================================================================
+# Target rules for targets named wt61_node
+
+# Build rule for target.
+wt61_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 wt61_node
+.PHONY : wt61_node
+
+# fast build rule for target.
+wt61_node/fast:
+	$(MAKE) -f wt61/CMakeFiles/wt61_node.dir/build.make wt61/CMakeFiles/wt61_node.dir/build
+.PHONY : wt61_node/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -838,6 +851,7 @@ help:
 	@echo "... imu_generate_messages_eus"
 	@echo "... imu_generate_messages_nodejs"
 	@echo "... imu_gennodejs"
+	@echo "... wt61_node"
 .PHONY : help
 
 
