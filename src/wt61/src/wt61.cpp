@@ -20,26 +20,32 @@ POSIX_WT61C_TTL::POSIX_WT61C_TTL(int &argc, char **&argv, ros::NodeHandle &_nh)
 POSIX_WT61C_TTL::~POSIX_WT61C_TTL()
 {
     // 关闭串口
-    //
+    if (_fd > 0)
+    {
+        ::close(_fd);
+    }
 }
 
 /**
  * @brief read
  *
  */
-void POSIX_WT61C_TTL::read(void)
+const size_t POSIX_WT61C_TTL::read(void)
 {
     // _fd = ::open(_USB_NAME, O_RDWR | O_NOCTTY | O_NONBLOCK);
     size_t _n;
-    _n = ::read(_fd, _usb_buf, sizeof(_usb_buf));
-
     _read_buf.clear();
-    for (size_t i = 0; i < _n; i++)
-    {
-        _read_buf.push_back(_usb_buf[i]);
-    }
-
+    _n = ::read(_fd, _usb_buf, sizeof(_usb_buf));
     ROS_INFO("read %ld bytes data.", _n);
+
+    if (_n > 0)
+    {
+        for (size_t i = 0; i < _n; i++)
+        {
+            _read_buf.push_back(_usb_buf[i]);
+        }
+    }
+    return _n;
 }
 
 /**
@@ -101,7 +107,7 @@ bool POSIX_WT61C_TTL::data_valid_check(void) const
 
 /**
  * @brief Publisher发送消息
- * 
+ *
  */
 void POSIX_WT61C_TTL::pub_imu_data(void) const
 {
@@ -155,6 +161,10 @@ inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const std::vector<uint
 {
     uint8_t _num = 1;
     std::vector<uint8_t> _suncrc;
+    if (!_suncrc.empty())
+    {
+        _suncrc.clear();
+    }
     std::vector<std::vector<uint8_t>> vec;
     if (_vec.size() == 33)
     {
@@ -186,7 +196,7 @@ inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const std::vector<uint
  * @param _vec 数据
  * @return const uint8_t 校验和
  */
-inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const uint8_t *&_arr)
+inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const uint8_t *_arr)
 {
     // uint8_t _num = sizeof(_vec);
 

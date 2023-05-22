@@ -14,13 +14,13 @@ class POSIX_WT61C_TTL
 public:
     POSIX_WT61C_TTL(int &argc, char **&argv, ros::NodeHandle &_nh);
     ~POSIX_WT61C_TTL();
-    void read(void);
+    const size_t read(void);
     void print_test(void) const;
     bool imu_check(void) const;
     bool data_valid_check(void) const;
     void pub_imu_data(void) const;
     inline const std::vector<uint8_t> sumcrc(const std::vector<uint8_t> &_vec) const;
-    inline const std::vector<uint8_t> sumcrc(const uint8_t *&_arr);
+    inline const std::vector<uint8_t> sumcrc(const uint8_t *_arr);
 
     const bool port_init(void);
     const bool port_open(void);

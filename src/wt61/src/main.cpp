@@ -14,8 +14,8 @@ int main(int argc, char **argv)
     {
         if (!imu.imu_check())
         {
-            imu.port_init();
             ROS_INFO("retry open the port!");
+            imu.port_init();
         }
         else
         {
