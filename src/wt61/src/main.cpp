@@ -14,26 +14,22 @@ int main(int argc, char **argv)
     {
         if (!imu.imu_check())
         {
-            imu.port_open();
+            imu.port_init();
+            ROS_INFO("retry open the port!");
         }
         else
         {
             // 获取imu数据
             imu.read();
 
-            // test
-            // imu.print_test();
-
             // 检验数据有效性
             if (imu.data_valid_check())
             {
-                // ROS_INFO("data valid\n");
                 // 数据有效进行发送
                 imu.pub_imu_data();
             }
             else
             {
-                // ROS_INFO("data invalid\n");
                 ROS_ERROR("data invalid\n");
             }
         }

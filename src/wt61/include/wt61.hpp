@@ -5,6 +5,9 @@
 #include <fcntl.h>
 #include <poll.h>
 #include <vector>
+#pragma once
+
+#define g 9.8000000000
 
 class POSIX_WT61C_TTL
 {
@@ -19,8 +22,8 @@ public:
     inline const std::vector<uint8_t> sumcrc(const std::vector<uint8_t> &_vec) const;
     inline const std::vector<uint8_t> sumcrc(const uint8_t *&_arr);
 
-    void port_init(void);
-    void port_open(void);
+    const bool port_init(void);
+    const bool port_open(void);
 
 private:
     int _fd; // USB句柄
