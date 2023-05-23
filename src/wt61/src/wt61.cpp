@@ -150,6 +150,7 @@ void POSIX_WT61C_TTL::pub_imu_data(void) const
         data.angular.z = (short)(((short)_read_buf[_C + _zh] << 8) | _read_buf[_C + _zl]) * 180.0 / 32768.0;
     }
     // ------------------数据发送---------------------
+    std::cout << data << std::endl;
     _pub.publish(data);
     ROS_INFO("message published.\n");
 }

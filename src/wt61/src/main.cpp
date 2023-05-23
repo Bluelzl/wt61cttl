@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "IMU_WT61CTTL");
+    ros::init(argc, argv, "IMU_WT61CTTL_POSIX");
     ros::NodeHandle nh;
 
     POSIX_WT61C_TTL imu(argc, argv, nh);
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
             if (imu.data_valid_check())
             {
                 // 数据有效进行发送
-                // imu.pub_imu_data();
+                imu.pub_imu_data();
             }
             else
             {
