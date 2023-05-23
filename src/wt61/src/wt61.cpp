@@ -38,13 +38,15 @@ const size_t POSIX_WT61C_TTL::read(void)
     _n = ::read(_fd, _usb_buf, sizeof(_usb_buf));
     ROS_INFO("read %ld bytes data.", _n);
 
-    if (_n > 0)
+    if ((int)_n > 0)
     {
+        ROS_INFO("refresh _read_buf");
         for (size_t i = 0; i < _n; i++)
         {
             _read_buf.push_back(_usb_buf[i]);
         }
     }
+    ROS_INFO("_read_buf num = %d", _read_buf.size());
     return _n;
 }
 
@@ -60,10 +62,11 @@ void POSIX_WT61C_TTL::print_test(void) const {}
  * @return true
  * @return false
  */
-bool POSIX_WT61C_TTL::imu_check(void) const
+bool POSIX_WT61C_TTL::imu_check(void)
 {
+    // _fd = ::open(_USB_NAME, O_RDWR | O_NOCTTY | O_NONBLOCK);
     ROS_INFO("fd = %d", _fd);
-    return _fd > 0;
+    return (_fd > 0);
 }
 
 /**
@@ -157,7 +160,7 @@ void POSIX_WT61C_TTL::pub_imu_data(void) const
  * @param _vec 数据
  * @return const std::vector<uint8_t> 校验和
  */
-inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const std::vector<uint8_t> &_vec) const
+const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const std::vector<uint8_t> &_vec) const
 {
     uint8_t _num = 1;
     std::vector<uint8_t> _suncrc;
@@ -196,42 +199,42 @@ inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const std::vector<uint
  * @param _vec 数据
  * @return const uint8_t 校验和
  */
-inline const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const uint8_t *_arr)
-{
-    // uint8_t _num = sizeof(_vec);
+// const std::vector<uint8_t> POSIX_WT61C_TTL::sumcrc(const uint8_t *_arr)
+// {
+//     // uint8_t _num = sizeof(_vec);
 
-    uint8_t _num = 1;
-    _read_buf.clear();
-    for (uint8_t i = 0; i < sizeof(_arr); i++)
-    {
-        _read_buf.push_back(*(_arr + i));
-    }
+//     uint8_t _num = 1;
+//     _read_buf.clear();
+//     for (uint8_t i = 0; i < sizeof(_arr); i++)
+//     {
+//         _read_buf.push_back(*(_arr + i));
+//     }
 
-    std::vector<uint8_t> _suncrc;
-    std::vector<std::vector<uint8_t>> vec;
-    if (_read_buf.size() == 33)
-    {
-        std::vector<uint8_t>::const_iterator ite1 = _read_buf.begin();
-        std::vector<uint8_t>::const_iterator ite2 = _read_buf.begin() + 11;
-        std::vector<uint8_t>::const_iterator ite3 = _read_buf.begin() + 22;
-        std::vector<uint8_t>::const_iterator ite4 = _read_buf.end();
+//     std::vector<uint8_t> _suncrc;
+//     std::vector<std::vector<uint8_t>> vec;
+//     if (_read_buf.size() == 33)
+//     {
+//         std::vector<uint8_t>::const_iterator ite1 = _read_buf.begin();
+//         std::vector<uint8_t>::const_iterator ite2 = _read_buf.begin() + 11;
+//         std::vector<uint8_t>::const_iterator ite3 = _read_buf.begin() + 22;
+//         std::vector<uint8_t>::const_iterator ite4 = _read_buf.end();
 
-        // 分割成三部分指令，方便求数据和校验
-        vec = {std::vector<uint8_t>(ite1, ite2),
-               std::vector<uint8_t>(ite2, ite3),
-               std::vector<uint8_t>(ite3, ite4)};
-        _num = 3;
-    }
-    for (uint _i = 0; _i < _num; _i++)
-    {
-        uint8_t temp = 0;
-        for (auto it = vec[_i].begin(); it < vec[_i].end() - 1; it++)
-            temp += *it;
+//         // 分割成三部分指令，方便求数据和校验
+//         vec = {std::vector<uint8_t>(ite1, ite2),
+//                std::vector<uint8_t>(ite2, ite3),
+//                std::vector<uint8_t>(ite3, ite4)};
+//         _num = 3;
+//     }
+//     for (uint _i = 0; _i < _num; _i++)
+//     {
+//         uint8_t temp = 0;
+//         for (auto it = vec[_i].begin(); it < vec[_i].end() - 1; it++)
+//             temp += *it;
 
-        _suncrc.push_back(temp);
-    }
-    return _suncrc;
-}
+//         _suncrc.push_back(temp);
+//     }
+//     return _suncrc;
+// }
 
 /**
  * @brief 初始化串口POSIX
@@ -314,7 +317,7 @@ const bool POSIX_WT61C_TTL::port_init(void)
     uart_config.c_cc[VTIME] = 1;
     uart_config.c_cc[VMIN] = 1;
 
-    // tcflush(_fd, TCIFLUSH);
+    tcflush(_fd, TCIOFLUSH);
 
     if ((termios_state = cfsetispeed(&uart_config, speed)) < 0)
     {
@@ -340,6 +343,7 @@ const bool POSIX_WT61C_TTL::port_init(void)
     {
         return true;
     }
+    ::close(_fd);
 }
 
 /**
@@ -352,4 +356,9 @@ const bool POSIX_WT61C_TTL::port_open(void)
 {
     _fd == ::open(_USB_NAME, O_RDWR | O_NOCTTY | O_NONBLOCK);
     return (_fd > 0);
+}
+
+void POSIX_WT61C_TTL::port_close(void)
+{
+    ::close(_fd);
 }

@@ -12,10 +12,12 @@ int main(int argc, char **argv)
     ROS_INFO("开始获取IMU数据");
     while (ros::ok())
     {
+        imu.port_open();
         if (!imu.imu_check())
         {
             ROS_INFO("retry open the port!");
             imu.port_init();
+            imu.port_open();
         }
         else
         {
@@ -26,12 +28,13 @@ int main(int argc, char **argv)
             if (imu.data_valid_check())
             {
                 // 数据有效进行发送
-                imu.pub_imu_data();
+                // imu.pub_imu_data();
             }
             else
             {
                 ROS_ERROR("data invalid\n");
             }
+            imu.port_close();
         }
         // 睡眠
         rate.sleep();
